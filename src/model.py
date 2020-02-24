@@ -124,7 +124,6 @@ class wavefield_reconstruction(object):
         start_time = time.time()
         self.current_epoch = 0
         counter = 0
-        self.samples = []
 
         mask = torch.from_numpy(1.0 - self.file_mask["mask"][0, :, :, 0]).to(self.device)
         batch_idxs = list(range(int(floor(float(self.train_set_size) / args.batch_size))))

@@ -13,8 +13,6 @@ import matplotlib.ticker as ticker
 from genDataset import genDataset
 from utils import load_test_data, load_train_data
 from tqdm import tqdm
-sfmt=ticker.ScalarFormatter(useMathText=True) 
-sfmt.set_powerlimits((0, 0))
 
 class wavefield_reconstruction(object):
     def __init__(self, args):
@@ -283,9 +281,7 @@ class wavefield_reconstruction(object):
 
         start_time_interp = time.time()
 
-        for itest in range(0, self.test_set_size):
-            if np.mod(itest, 300) == 0:
-                print(itest)
+        for itest in tqdm(range(0, self.test_set_size)):
             pair_index = itest
             # pair_index =
             partial_data = load_test_data(pair_index, filetest=self.file_testB, dataset="test_dataset", device=self.device)
@@ -298,10 +294,10 @@ class wavefield_reconstruction(object):
 
             SNR = self.signal_to_noise(full_data, pred_data)
 
-            SNR_AVG = SNR_AVG0 + SNR
+            SNR_AVG = SNR_AVG + SNR
             # from IPython import embed; embed()
             iii = iii + 1
 
-        datasetSNR[0, 0] = SNR_AVG0/iii
+        datasetSNR[0, 0] = SNR_AVG/iii
         file_SNR.close()
         file_correction.close()

@@ -4,7 +4,7 @@ Codes for generating results in Siahkoohi, A., Kumar, R. and Herrmann, F.J., 201
 
 ## Prerequisites
 
-This code has been tested using Deep Learning AMI (Amazon Linux) Version 24.2 (predefined `tensorflow_p36` conda environment) on Amazon Web Services (AWS). We used `g3s.xlarge` instance. Follow the steps below to install the necessary libraries:
+This code has been tested using Deep Learning AMI (Amazon Linux) Version 24.2 on Amazon Web Services (AWS). We performed the test on `g3s.xlarge` and `g4dn.xlarge` instances. Follow the steps below to install the necessary libraries:
 
 ```bash
 cd $HOME

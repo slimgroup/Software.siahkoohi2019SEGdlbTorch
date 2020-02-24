@@ -12,7 +12,7 @@ git clone git@github.com/alisiahkoohi/wavefield-reconstruction-torch.git
 cd $HOME/wavefield-reconstruction-torch
 conda create -n torch pip python=3.6
 source activate torch
-conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+conda install pytorch torchvision cudatoolkit=10.1 -c pytorch #If your system has GPU
 pip install --user -r  requirements.txt
 
 ```

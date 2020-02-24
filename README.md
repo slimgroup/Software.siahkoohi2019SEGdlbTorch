@@ -24,7 +24,7 @@ Links have been provided in `RunTraining.sh` script to automatically download th
 
 ## Script descriptions
 
-`RunTraining.sh`\: script for running training. It will make `model/` and `data/` directory in `/home/ec2-user/` for storing training/testing data and saved neural net checkpoints and final results, respectively. Next, it will train a neural net for the experiment for 14.33 Hz monochromatic seismic data.
+`RunTraining.sh`\: script for running training. It will make `model/` and `data/` directory in `$HOME` for storing training/testing data and saved neural net checkpoints and final results, respectively. Next, it will train a neural net for the experiment for 14.33 Hz monochromatic seismic data.
 
 `RunTesting.sh`\: script for testing the trained neural net. It will reconstruct the entire subsampled 14.33 Hz monochromatic seismic data and place the result in `sample/` directory to be used for plotting purposes.
 

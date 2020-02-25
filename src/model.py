@@ -252,7 +252,6 @@ class wavefield_reconstruction(object):
         mask = torch.from_numpy(1.0 - self.file_mask["mask"][0, :, :, 0]).to(self.device)
 
         SNR_AVG = 0
-        iii = 0
 
         strResult = os.path.join(args.sample_dir, 'mapping_SNR.hdf5')
 
@@ -291,8 +290,7 @@ class wavefield_reconstruction(object):
             SNR = self.signal_to_noise(full_data, pred_data)
 
             SNR_AVG = SNR_AVG + SNR
-            iii = iii + 1
 
-        datasetSNR[0, 0] = SNR_AVG/iii
+        datasetSNR[0, 0] = SNR_AVG/self.test_set_size
         file_SNR.close()
         file_correction.close()

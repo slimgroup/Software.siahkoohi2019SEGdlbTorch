@@ -37,6 +37,6 @@ if [ ! -f $path_data/InterpolatedCoil_freq14.33_Mask_0.1SamplingRate_random.hdf5
 		-O $path_data/InterpolatedCoil_freq14.33_Mask_0.1SamplingRate_random.hdf5
 fi
 
-python $path_script/main.py --experiment_dir $experiment_name --phase train --batch_size 1 \
+python $path_script/main.py --experiment $experiment_name --phase train --batch_size 1 \
 	--freq $frequency --data_path $path_data --cuda 1 \
 	--checkpoint_dir $path_model/checkpoint --sample_dir $path_model/sample --log_dir $path_model/log

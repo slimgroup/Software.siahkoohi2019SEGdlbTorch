@@ -11,6 +11,6 @@ path_script=$HOME/$repo_name/src/
 path_data=$HOME/data
 path_model=$HOME/model/$experiment_name
 
-python $path_script/main.py --experiment_dir $experiment_name --phase test \
+python $path_script/main.py --experiment $experiment_name --phase test \
 	--freq $frequency --data_path $path_data --cuda 1 \
 	--checkpoint_dir $path_model/checkpoint --sample_dir $path_model/sample --log_dir $path_model/log

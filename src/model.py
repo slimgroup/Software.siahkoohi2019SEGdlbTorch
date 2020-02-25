@@ -249,11 +249,6 @@ class wavefield_reconstruction(object):
 
         ######################## Needs work #########################
 
-        if self.load(args.checkpoint_dir):
-            print(" [*] Load SUCCESS")
-        else:
-            print(" [!] Load failed...")
-
         mask = torch.from_numpy(1.0 - self.file_mask["mask"][0, :, :, 0]).to(self.device)
 
         SNR_AVG0 = 0

@@ -68,10 +68,10 @@ class discriminator(torch.nn.Module):
         self.conv3 = ConvLayer(num_channels*2, num_channels*4, kernel_size=4, stride=2)
         self.in3 = torch.nn.InstanceNorm2d(num_channels*4, affine=True)
         
-        self.conv4 = ConvLayer(num_channels*4, num_channels*8, kernel_size=4, stride=2)
+        self.conv4 = ConvLayer(num_channels*4, num_channels*8, kernel_size=4, stride=1)
         self.in4 = torch.nn.InstanceNorm2d(num_channels*8, affine=True)
         
-        self.conv5 = ConvLayer(num_channels*8, 1, kernel_size=1, stride=2)
+        self.conv5 = ConvLayer(num_channels*8, 1, kernel_size=1, stride=1)
         # Non-linearities
         self.lrelu = torch.nn.LeakyReLU()
 

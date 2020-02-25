@@ -251,11 +251,10 @@ class wavefield_reconstruction(object):
 
         mask = torch.from_numpy(1.0 - self.file_mask["mask"][0, :, :, 0]).to(self.device)
 
-        SNR_AVG0 = 0
-        SNR_AVG1 = 0
+        SNR_AVG = 0
         iii = 0
 
-        strResult = os.path.join(self.sample_dir, 'mapping_SNR.hdf5')
+        strResult = os.path.join(args.sample_dir, 'mapping_SNR.hdf5')
 
         if os.path.isfile(strResult):
             os.remove(strResult)
@@ -264,25 +263,28 @@ class wavefield_reconstruction(object):
         dataset_str = "SNR"
         datasetSNR = file_SNR.create_dataset(dataset_str, (1, 1))
 
-        strCorrection = os.path.join(self.sample_dir, 'mapping_result.hdf5')
+        strCorrection = os.path.join(args.sample_dir, 'mapping_result.hdf5')
 
         if os.path.isfile(strCorrection):
             os.remove(strCorrection)
 
         file_correction = h5py.File(strCorrection, 'w-')
         datasetCorrection_str = "result"
-        datasetCorrection = file_correction.create_dataset(datasetCorrection_str, (self.test_set_size, self.image_size0, self.image_size1, 2))
+
+        datasetCorrection = file_correction.create_dataset(datasetCorrection_str, 
+            (self.test_set_size, self.file_testB["test_dataset"].shape[1], 
+            self.file_testB["test_dataset"].shape[1], 2))
 
         start_time_interp = time.time()
 
         for itest in tqdm(range(0, self.test_set_size)):
             pair_index = itest
-            # pair_index =
+
             partial_data = load_test_data(pair_index, filetest=self.file_testB, dataset="test_dataset", device=self.device)
             full_data = load_test_data(pair_index, filetest=self.file_testA, dataset="test_dataset", device=self.device)
 
             pred_data = self.G(partial_data)
-            datasetCorrection[itest, :, :, :] = pred_data[0, :, :, :]
+            datasetCorrection[itest, :, :, :] = pred_data[0, :, :, :].detach().cpu().permute(1, 2, 0).numpy()
 
             pred_data = partial_data + pred_data*mask
 

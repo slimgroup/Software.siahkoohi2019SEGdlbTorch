@@ -291,7 +291,6 @@ class wavefield_reconstruction(object):
             SNR = self.signal_to_noise(full_data, pred_data)
 
             SNR_AVG = SNR_AVG + SNR
-            # from IPython import embed; embed()
             iii = iii + 1
 
         datasetSNR[0, 0] = SNR_AVG/iii

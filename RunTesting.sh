@@ -5,7 +5,7 @@ sampling_rate=0.1
 scheme=random
 
 experiment_name=wavefield-reconstruction_freq${frequency}_A_train_${sampling_rate}SamplingRate_${scheme}_evolving_training_set
-repo_name=wavefield-reconstruction-torch
+repo_name=Software.siahkoohi2019SEGdlbTorch
 
 path_script=$HOME/$repo_name/src/
 path_data=$HOME/data

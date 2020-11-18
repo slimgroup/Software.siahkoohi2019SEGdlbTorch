@@ -105,18 +105,20 @@ class wavefield_reconstruction(object):
         partial_data = training_batch[:, 2:, ...]
         pred_data = self.G(partial_data)
         pred_prob = self.D(pred_data)
-        obj = self.l2_loss(pred_prob, torch.ones_like(pred_prob)) + self.L1_lambda * self.l1_loss(pred_data*mask, 
-            full_data*mask)
+        obj = self.l2_loss(pred_prob, torch.ones_like(pred_prob)) + self.L1_lambda * \
+            self.l1_loss(pred_data*mask, full_data*mask)
         return obj, pred_prob
 
 
     def D_objective(self, training_batch, pred_prob):
         full_data    = training_batch[:, :2, ...]
+        partial_data = training_batch[:, 2:, ...]
+        pred_data = self.G(partial_data)
+        pred_prob = self.D(pred_data)
         true_prob = self.D(full_data)
         obj = (self.l2_loss(true_prob, torch.ones_like(true_prob)) + self.l2_loss(pred_prob, 
             torch.zeros_like(pred_prob)))/2
         return obj
-
 
     def train(self, args):
 
@@ -155,7 +157,7 @@ class wavefield_reconstruction(object):
                 # Update G network and record fake outputs
                 G_loss, pred_prob = self.G_objective(training_batch, mask)
 
-                grad_G = torch.autograd.grad(G_loss, self.G.parameters(), create_graph=False, retain_graph=True)
+                grad_G = torch.autograd.grad(G_loss, self.G.parameters(), create_graph=False, retain_graph=False)
                 for param, grad in zip(self.G.parameters(), grad_G):
                     param.grad = grad
                 self.optim_G.step()

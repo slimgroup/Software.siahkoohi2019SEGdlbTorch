@@ -77,7 +77,7 @@ If you find this software useful in your research, please cite:
 	month = {09},
 	pages = {2232-2237},
 	keywords = {machine learning, obn, reciprocity, reconstruction, SEG},
-	doi = {10.1190/segam2019-3216632.1}
+	doi = {10.1190/segam2019-3216632.1},
 	author = {Ali Siahkoohi and Rajiv Kumar and Felix J. Herrmann}
 }
 ```
